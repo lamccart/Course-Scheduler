@@ -117,6 +117,7 @@ public class dHeap<T extends Comparable<? super T>>
         for(int i = 0; i < heap.length; i++){
             newHeap[i] = heap[i];
         }
+        heap = newHeap;
     }
 
     /**
@@ -158,7 +159,7 @@ public class dHeap<T extends Comparable<? super T>>
      * Adds the specified element to the heap; o cannot be null. Resizes the
      * storage if full.
      *
-     * @param o The element to add.
+     * @param data The element to add.
      * @throws NullPointerException if o is null.
      */
     @Override
