@@ -51,6 +51,11 @@ public class dHeap<T extends Comparable<? super T>>
             this.isMaxHeap = isMaxHeap;
         }
     }
+
+    /**
+     * Trickles the top element down the heap
+     *
+     */
     private void trickleDown(int index){
         int childIndex = child(index);
         T value = heap[index];
@@ -76,6 +81,10 @@ public class dHeap<T extends Comparable<? super T>>
         }
     }
 
+    /**
+     * Bubbles an element up the heap.
+     *
+     */
     private void bubbleUp(int index){
         while (index > 0) {
 
@@ -89,6 +98,9 @@ public class dHeap<T extends Comparable<? super T>>
         }
     }
 
+    /**
+     * Makes right comparison if min or max heap
+     */
     private boolean comparison(T child, T parent){
         if(isMaxHeap){
             return child.compareTo(parent) > 0;
@@ -97,31 +109,58 @@ public class dHeap<T extends Comparable<? super T>>
         }
     }
 
+    /**
+     * Resizes the array
+     */
     private void resize(){
-        heap = Arrays.copyOf(heap, heap.length * BINARY_BRANCHING);
+        T[] newHeap = (T[]) new Comparable[heap.length * BINARY_BRANCHING];
+        for(int i = 0; i < heap.length; i++){
+            newHeap[i] = heap[i];
+        }
     }
 
+    /**
+     * Swaps two elements
+     */
     private void swap(int index1, int index2){
         T tmp = heap[index1];
         heap[index1] = heap[index2];
         heap[index2] = tmp;
     }
 
+    /**
+     * Gets the parent index
+     */
     private int parent(int index){
         return (index - 1)/ d;
     }
 
+    /**
+     * Gets the child index
+     */
     private int child(int index){
         return d * index + 1;
     }
 
 
+    /**
+     * Returns the number of elements stored in the heap.
+     *
+     * @return The number of elements stored in the heap.
+     */
     @Override
     public int size() {
         return nelems;
 
     }
 
+    /**
+     * Adds the specified element to the heap; o cannot be null. Resizes the
+     * storage if full.
+     *
+     * @param o The element to add.
+     * @throws NullPointerException if o is null.
+     */
     @Override
     public void add(T data) throws NullPointerException {
         if(data == null){
@@ -138,6 +177,13 @@ public class dHeap<T extends Comparable<? super T>>
         }
     }
 
+    /**
+     * Removes and returns the element at the root. If the heap is empty, then
+     * this method throws a NoSuchElementException.
+     *
+     * @return The element at the root stored in the heap.
+     * @throws NoSuchElementException if the heap is empty
+     */
     @Override
     public T remove() throws NoSuchElementException {
         if(heap[0] == null ){
@@ -155,12 +201,21 @@ public class dHeap<T extends Comparable<? super T>>
         }
     }
 
+    /**
+     * Clears all the items in the heap Heap will be empty after this call
+     * returns
+     */
     @Override
     public void clear() {
         heap = (T[]) new Comparable[heap.length];
         nelems = 0;
     }
 
+    /**
+     * Retrieves, but does not remove, the element at the root.
+     *
+     * @return item at the root of the heap
+     */
     @Override
     public T element() {
         return heap[0];
