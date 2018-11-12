@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class dHeapTest {
+public class dHeapTester {
 
     @Test
     public void testSize() {

@@ -66,7 +66,7 @@ public class dHeap<T extends Comparable<? super T>>
                 }
             }
             int compareXtr = xtrValue.compareTo(value);
-            if (compareXtr == 0) {
+            if (compareXtr == 0 || xtrIndex == -1) {
                 break;
             }else{
                 swap(index, xtrIndex);

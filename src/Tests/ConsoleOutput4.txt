@@ -1,33 +1,33 @@
 ####START COURSE SCHEDULING####
 
-Waitlisting Walker(A11111) to Hold.Course DSC30 with 30 coins
-Waitlisting Marina(A65545) to Hold.Course DSC30 with 50 coins
-Waitlisting Don(A76548) to Hold.Course DSC10 with 25 coins
+Waitlisting Walker(A11111) to Course DSC30 with 30 coins
+Waitlisting Marina(A65545) to Course DSC30 with 50 coins
+Waitlisting Don(A76548) to Course DSC10 with 25 coins
 Insufficient course coins. Cannot waitlist Walker(A11111) to DSC20
-Waitlisting Jeremy(A67876) to Hold.Course DSC20 with 20 coins
-Waitlisting Marina(A65545) to Hold.Course DSC20 with 30 coins
+Waitlisting Jeremy(A67876) to Course DSC20 with 20 coins
+Waitlisting Marina(A65545) to Course DSC20 with 30 coins
 
 ####STARTING BATCH ENROLLMENT####
-Enrolling Don(A76548) to Hold.Course DSC10 with 25 coins
-Enrolling Marina(A65545) to Hold.Course DSC20 with 30 coins
-Enrolling Marina(A65545) to Hold.Course DSC30 with 50 coins
-Enrolling Jeremy(A67876) to Hold.Course DSC20 with 20 coins
-Enrolling Walker(A11111) to Hold.Course DSC30 with 30 coins
+Enrolling Don(A76548) to Course DSC10 with 25 coins
+Enrolling Marina(A65545) to Course DSC20 with 30 coins
+Enrolling Marina(A65545) to Course DSC30 with 50 coins
+Enrolling Jeremy(A67876) to Course DSC20 with 20 coins
+Enrolling Walker(A11111) to Course DSC30 with 30 coins
 ####ENDING BATCH ENROLLMENT####
 
 Insufficient course coins. Cannot waitlist Walker(A11111) to DSC40B
-Waitlisting Jeremy(A67876) to Hold.Course DSC10 with 30 coins
-Waitlisting Don(A76548) to Hold.Course DSC20 with 15 coins
-Don(A76548)is already waitlisted in Hold.Course DSC20
-Waitlisting Don(A76548) to Hold.Course DSC40A with 15 coins
+Waitlisting Jeremy(A67876) to Course DSC10 with 30 coins
+Waitlisting Don(A76548) to Course DSC20 with 15 coins
+Don(A76548)is already waitlisted in Course DSC20
+Waitlisting Don(A76548) to Course DSC40A with 15 coins
 
 ####STARTING BATCH ENROLLMENT####
-Enrolling Jeremy(A67876) to Hold.Course DSC10 with 30 coins
-Enrolling Don(A76548) to Hold.Course DSC20 with 15 coins
-Enrolling Don(A76548) to Hold.Course DSC40A with 15 coins
+Enrolling Jeremy(A67876) to Course DSC10 with 30 coins
+Enrolling Don(A76548) to Course DSC20 with 15 coins
+Enrolling Don(A76548) to Course DSC40A with 15 coins
 ####ENDING BATCH ENROLLMENT####
 
-Waitlisting Krushi(A55555) to Hold.Course DSC30 with 30 coins
+Waitlisting Krushi(A55555) to Course DSC30 with 30 coins
 
 ####END COURSE SCHEDULING####
 
