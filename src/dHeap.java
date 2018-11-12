@@ -146,6 +146,7 @@ public class dHeap<T extends Comparable<? super T>>
             T keyItem = heap[0];
             if(nelems>=0){
                 heap[0] = heap[nelems - 1];
+                heap[nelems - 1] = null;
                 nelems--;
                 trickleDown(0);
             }
