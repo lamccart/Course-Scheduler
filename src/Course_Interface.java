@@ -24,7 +24,7 @@ public interface Course_Interface {
     public int getCourseCapacity();
 
     /**
-     * Accessor for Course Roster
+     * Accessor for Hold.Course Roster
      *
      * @return course roster
      */
@@ -41,7 +41,7 @@ public interface Course_Interface {
     /**
      * Enqueues the student to the waitlist for this course
      *
-     * @param r Registration to be waitlisted
+     * @param r Hold.Registration to be waitlisted
      */
     public void addToWaitlist(Registration r);
 
@@ -49,7 +49,7 @@ public interface Course_Interface {
      * Enrolls the next student in the waitlist to the course. Does nothing if
      * the waitlist is empty
      *
-     * @return Registration Request that was processed
+     * @return Hold.Registration Request that was processed
      */
     public Registration processWaitlist();
 }

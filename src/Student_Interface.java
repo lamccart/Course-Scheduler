@@ -6,7 +6,7 @@ public interface Student_Interface {
      * Adds course c to the list of enrolled courses Also removes c from the
      * waitlisted courses
      *
-     * @param c Course to be enrolled in
+     * @param c Hold.Course to be enrolled in
      */
     public void enrollCourse(Course c);
 
@@ -26,9 +26,9 @@ public interface Student_Interface {
     public String getStudentName();
 
     /**
-     * Accessor for Student ID
+     * Accessor for Hold.Student ID
      *
-     * @return studentID - Student ID
+     * @return studentID - Hold.Student ID
      */
     public String getStudentID();
 

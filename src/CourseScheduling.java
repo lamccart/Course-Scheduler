@@ -4,9 +4,9 @@ import java.util.*;
 /**
  * Course Registration Manager
  *
- * @author //Insert name and pid here
+ * @author Liam McCarthy A14029718
  * @version 1.0
- * @since //Insert today's date
+ * @since 11/11/2018
  */
 public class CourseScheduling {
 
@@ -133,7 +133,15 @@ public class CourseScheduling {
      */
     public static Course getCourse(String code) {
         ListIterator<Course> iter = courseList.listIterator();
-        //TODO
+
+        for(int i = 0; i < courseList.size(); i++){
+            if(iter.hasNext()){
+                Course currCourse= iter.next();
+                if(currCourse.getCourseCode().equals(code)){
+                    return currCourse;
+                }
+            }
+        }
         return null;
     }
 
@@ -146,7 +154,14 @@ public class CourseScheduling {
     public static Student getStudent(String pid) {
         ListIterator<Student> iter = studentList.listIterator();
 
-        //TODO
+        for(int i = 0; i < studentList.size(); i++){
+            if(iter.hasNext()){
+                Student currStudent= iter.next();
+                if(currStudent.getStudentID().equals(pid)){
+                    return currStudent;
+                }
+            }
+        }
         return null;
     }
 
@@ -168,13 +183,59 @@ public class CourseScheduling {
                 }
                 if (property.equals("register")) {
                     //add a new student to the course list
+                    //get the student pid, course, and coins
+                    String pid;
+                    String courseCode;
+                    int coins;
+                    pid = scWord.next();
+                    courseCode = scWord.next();
+                    coins = Integer.parseInt(scWord.next());
+                    //get student object and course object
+                    //make registration object
+                    Registration r = new Registration(getStudent(pid), getCourse(courseCode), coins);
+                    //check if student is waitlisted or enrolled in course
+                    boolean isWaitlisted = r.getStudent().getmyWaitlist().contains(r.getCourse());
+                    boolean isEnrolled = r.getStudent().getmyEnrolledCourses().contains(r.getCourse());
+                    //check if student has enough coins to be added
+                    boolean enoughCoins = r.getStudent().getCoins() >= coins;
+                    //if all apply add registration to the courses waitlist
+                    if(isWaitlisted) {
+                        printFail(r.getStudent(), r.getCourse(), false);
+                    }else if(isEnrolled){
+                        printFail(r.getStudent(), r.getCourse(), true);
+                    }else if(!enoughCoins){
+                        printNoCoins(r.getStudent(), r.getCourse());
+                    }else {
+                        r.getCourse().addToWaitlist(r);
+                        //deduct coins from student
+                        r.getStudent().deductCoins(coins);
+                        print(r.getStudent(), r.getCourse(), r.getCoins(), false);
+                    }
 
-                    //TODO
                 } else if (property.equals("enroll")) {
                     //process registrations in the waitlist
                     System.out.println("\n####STARTING BATCH ENROLLMENT####");
+                    //check how many enrollments are done for each course
+                    int quantity = Integer.parseInt(scWord.next());
+                    //loop through number of enrollments
+                    for(int i = 0; i < quantity; i++){
+                        //loop through every course
+                        for(Course c : courseList){
+                            //check if capacity has been reached for the course
+                            if(c.isFull()){
+                                printCapacity(c);
+                            }else{
+                                //processes waitlist for that course
+                                Registration newReg = c.processWaitlist();
+                                //check if no registrations in waiting list
+                                if(newReg != null){
+                                    print(newReg.getStudent(), newReg.getCourse(), newReg.getCoins(), true);
+                                }
 
-                    //TODO
+                            }
+                        }
+                    }
+
                     System.out.println("####ENDING BATCH ENROLLMENT####\n");
                 } else {
                     break;

@@ -17,6 +17,7 @@ public class dHeap<T extends Comparable<? super T>>
     public dHeap() {
         this.heap = (T[]) new Comparable[DEFAULT_SIZE];
         this.d = BINARY_BRANCHING;
+        this.isMaxHeap = true;
     }
 
     /**
@@ -27,6 +28,7 @@ public class dHeap<T extends Comparable<? super T>>
     public dHeap(int heapSize) {
         this.heap = (T[]) new Comparable[heapSize];
         this.d = BINARY_BRANCHING;
+        this.isMaxHeap = true;
     }
 
     /**
@@ -46,6 +48,7 @@ public class dHeap<T extends Comparable<? super T>>
         }else{
             this.heap = (T[]) new Comparable[heapSize];
             this.d = d;
+            this.isMaxHeap = isMaxHeap;
         }
     }
     private void trickleDown(int index){
@@ -54,19 +57,20 @@ public class dHeap<T extends Comparable<? super T>>
 
         while (childIndex < nelems) {
             // Find the max among the node and all the node's children
-            T maxValue = value;
-            int maxIndex = -1;
+            T xtrValue = value;
+            int xtrIndex = -1;
             for (int i = 0; i < 2 && i + childIndex < nelems; i++) {
-                int comparison = heap[i + childIndex].compareTo(maxValue);
-                if (comparison > 0) {
-                    maxValue = heap[i + childIndex];
-                    maxIndex = i + childIndex;
+                if (comparison(heap[i + childIndex], xtrValue)){
+                    xtrValue = heap[i + childIndex];
+                    xtrIndex = i + childIndex;
                 }
             }
-            int comparison = maxValue.compareTo(value);
-            if (comparison != 0) {
-                swap(index, maxIndex);
-                index = maxIndex;
+            int compareXtr = xtrValue.compareTo(value);
+            if (compareXtr == 0) {
+                break;
+            }else{
+                swap(index, xtrIndex);
+                index = xtrIndex;
                 childIndex = child(index);
             }
         }
@@ -74,12 +78,22 @@ public class dHeap<T extends Comparable<? super T>>
 
     private void bubbleUp(int index){
         while (index > 0) {
+
             int parentIndex = parent(index);
-            int comparison = heap[index].compareTo(heap[parentIndex]);
-            if (comparison <= 0){
+            if (comparison(heap[index], heap[parentIndex])){
                 swap(index, parentIndex);
                 index = parentIndex;
+            }else{
+                break;
             }
+        }
+    }
+
+    private boolean comparison(T child, T parent){
+        if(isMaxHeap){
+            return child.compareTo(parent) > 0;
+        }else{
+            return child.compareTo(parent) < 0;
         }
     }
 
@@ -94,7 +108,7 @@ public class dHeap<T extends Comparable<? super T>>
     }
 
     private int parent(int index){
-        return Math.floorDiv(index - 1, d);
+        return (index - 1)/ d;
     }
 
     private int child(int index){
@@ -110,30 +124,33 @@ public class dHeap<T extends Comparable<? super T>>
 
     @Override
     public void add(T data) throws NullPointerException {
-        int comparison = data.compareTo(null);
-        if(comparison == 0){
+        if(data == null){
             throw new NullPointerException();
         }else{
-            if(heap.length - 1 >= nelems){
-                this.resize();
+
+            if(heap.length - 1 <= nelems){
+                resize();
             }
             /* Percolate up */
-            heap[nelems++] = data;
-            bubbleUp(nelems - 1);
+            heap[nelems] = data;
+            nelems++;
+            bubbleUp(nelems-1);
         }
     }
 
     @Override
     public T remove() throws NoSuchElementException {
-        int comparison = heap[0].compareTo(null);
-        if(comparison == 0){
+        if(heap[0] == null ){
             throw new NoSuchElementException();
         }else{
             T keyItem = heap[0];
-            heap[0] = heap[nelems - 1];
-            nelems--;
-            trickleDown(0);
+            if(nelems>=0){
+                heap[0] = heap[nelems - 1];
+                nelems--;
+                trickleDown(0);
+            }
             return keyItem;
+
         }
     }
 

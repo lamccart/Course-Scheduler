@@ -1,7 +1,12 @@
+
 public class MyPriorityQueue<T extends Comparable<? super T>> {
 
+    private dHeap<T> pq;
+
+    public final static int BRANCHING_FACTOR = 4;
+
     public MyPriorityQueue(int initialSize) {
-        //TODO
+        pq = new dHeap<>(BRANCHING_FACTOR, initialSize, true );
     }
 
     /**
@@ -13,8 +18,12 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return returns true
      */
     public boolean offer(T element) throws NullPointerException {
-        return false; //XXX-CHANGE-XXX
-        //TODO
+        if(element == null){
+            throw new NullPointerException();
+        }else{
+            pq.add(element);
+            return true;
+        }
     }
 
     /**
@@ -25,15 +34,18 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * empty.
      */
     public T poll() {
-        return null; //XXX-CHANGE-XXX
-        //TODO
+        if( pq.size() == 0){
+            return null;
+        }else{
+            return pq.remove();
+        }
     }
 
     /**
      * Clears the contents of the queue
      */
     public void clear() {
-        //TODO
+        pq.clear();
     }
 
     /**
@@ -43,6 +55,10 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return the next item to be removed, null if the queue is empty
      */
     public T peek() {
-        return null; //XXX-CHANGE-XXX
+        if( pq.size() == 0){
+            return null;
+        }else{
+            return pq.element();
+        }
     }
 }

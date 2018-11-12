@@ -6,20 +6,21 @@ public class Registration implements Comparable<Registration> {
     private long timestamp;
 
     public Registration(Student student, Course course, int coins) {
-        //TODO
+        this.student = student;
+        this.course = course;
+        this.coins = coins;
     }
 
-    public Student getStudent() {
-        return null; //XXX-CHANGE-XXX
-    }
+    public Student getStudent() { return student; }
 
     public Course getCourse() {
-        return null; //XXX-CHANGE-XXX
+        return course;
     }
 
     public int getCoins() {
-        return -1; //XXX-CHANGE-XXX
+        return coins;
     }
+
 
     /**
      * Compares this Student with another Student, by comparing their course
@@ -29,12 +30,23 @@ public class Registration implements Comparable<Registration> {
      * ensure FCFS. (You may want to check the implementation of System.nanoTime
      * to ensure correctness)
      *
-     * @param o Student to be compared with
+     * @param o Hold.Student to be compared with
      * @return Result of the comparison
      */
     @Override
     public int compareTo(Registration o) {
-        return -1; //XXX-CHANGE-XXX
+        if(this.getCoins() < o.getCoins()){
+            return -1;
+        }else if(o.getCoins() < this.getCoins()){
+            return 1;
+        }else if(this.getCoins() == o.getCoins()){
+            if(this.timestamp > o.timestamp){
+                return -1;
+            }else if(o.timestamp > this.timestamp){
+                return 1;
+            }
+        }
+        return -1;
     }
 
     /**
